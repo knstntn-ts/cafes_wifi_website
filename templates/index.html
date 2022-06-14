@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cafe and Wifi Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+<body>
+
+    <h1>Welcome to the Cafe & Wifi API</h1>
+
+
+    <a class="btn btn-primary" href="{{ url_for('post_new_cafe') }}" role="button">Add cafe</a>
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col d-flex justify-content-center">Cafe Name</div>
+        <div class="col d-flex justify-content-center">Picture</div>
+        <div class="col d-flex justify-content-center">Wifi --> Sockets --> Toilet</div>
+        <div class="col d-flex justify-content-center">Modify/Delete</div>
+
+    </div>
+
+    {% for cafe in cafes:%}
+  <div class="row d-flex align-items-center">
+    <div class="col d-flex justify-content-center">
+      {{ cafe['name'] }}
+    </div>
+    <div class="col d-flex justify-content-center">
+      <img src="{{ cafe['img_url'] }}" class="img-thumbnail" >
+    </div>
+    <div class="col d-flex justify-content-center">
+      {{cafe['has_wifi']}} --> {{cafe['has_sockets']}} --> {{cafe['has_toilet']}}
+    </div>
+      <div class="col d-flex justify-content-center">
+
+          <a class="btn btn-primary" href="{{ url_for('update_info_cafe', cafe_id=cafe['id'])}}" role="button">Modify</a>
+          <a class="btn btn-primary" href="{{ url_for('delete_cafe', cafe_id=cafe['id'])}}" role="button">Delete</a>
+
+    </div>
+  </div>
+    {% endfor %}
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>
